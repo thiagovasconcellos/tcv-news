@@ -1,34 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# tcv-news
+
+![Tcv Image](https://i.ibb.co/pn99nKh/tcv-news.png)
+
+Fictional newsletter with subscription to improve knowledge about online payments.
 
 ## Getting Started
 
-First, run the development server:
+This project has a lot of third party dependencies. Follow instructions carefully!
+
+### Installing
 
 ```bash
-npm run dev
-# or
-yarn dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Install [stripe-cli](https://stripe.com/docs/stripe-cli) to attach webhooks to your local enviroment.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- Create a new database in [faunaDB](https://fauna.com/).
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+  - Create 2 collections: [users, subscriptions] (no schema needed)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Configure some github account to OAuth
 
-## Learn More
+### Enviroment variables
 
-To learn more about Next.js, take a look at the following resources:
+- Clone _.env.example_ as _.env.local_
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Most of variables are pretty straightforward, except "STRIPE_WEBHOOK_SECRET"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Stripe webhooks forwarding to localhost
 
-## Deploy on Vercel
+```bash
+stripe listen --forward-to localhost:3000/api/webhooks
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+After that you should see something like that in your terminal:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![webhook](https://i.ibb.co/rbRj76Q/tcv-news-stripe-key.png)
+
+This is your "STRIPE_WEBHOOK_SECRET"
+
+## Built With
+
+- [NextJs](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [NextAuth](https://next-auth.js.org/)
+- [FaunaDB](https://fauna.com/)
+- [Stripe](https://stripe.com/)
+
+## Authors
+
+- **Thiago Vasconcellos** - _Initial work_ - [ThiagoVasconcellos](https://github.com/thiagovasconcellos)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
