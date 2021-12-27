@@ -40,6 +40,21 @@ After that you should see something like that in your terminal:
 
 This is your "STRIPE_WEBHOOK_SECRET"
 
+## FaunaDB Indexes
+
+FaunaDB is a NoSQL Database, but you have to create some indexes to get things working:
+
+### User
+
+- user_by_email
+- user_by_stripe_customer_id
+
+### Subscriptions
+
+- subscription_by_id
+- subscription_by_status
+- subscription_by_user_ref
+
 Now you're good to go!
 
 ```bash
