@@ -40,6 +40,12 @@ After that you should see something like that in your terminal:
 
 This is your "STRIPE_WEBHOOK_SECRET"
 
+Now you're good to go!
+
+```bash
+yarn dev
+```
+
 ## Built With
 
 - [NextJs](https://nextjs.org/)
